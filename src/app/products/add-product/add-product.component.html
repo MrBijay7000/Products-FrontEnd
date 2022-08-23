@@ -1,0 +1,46 @@
+<mat-card>
+  <form (submit)="onSave(productForm)" #productForm="ngForm">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="Name"
+        ngModel
+        name="name"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="Price"
+        ngModel
+        name="price"
+        required
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="Quantity"
+        ngModel
+        name="quantity"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select ngModel required name="category">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="accent" type="submit">ADD</button>
+    </div>
+  </form>
+</mat-card>

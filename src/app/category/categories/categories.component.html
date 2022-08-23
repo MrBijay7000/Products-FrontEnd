@@ -1,0 +1,18 @@
+<mat-accordion multi="true">
+  <mat-expansion-panel *ngFor="let category of categories">
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ category.name }} </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-action-row>
+      <a
+        mat-button
+        color="primary"
+        [routerLink]="['/category/edit', category.id]"
+        >EDIT</a
+      >
+      <button mat-button color="warn" (click)="onDeleteCategory(category.id!)">
+        DELETE
+      </button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -1,0 +1,13 @@
+<mat-card>
+  <form [formGroup]="form" (submit)="onSave()">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Name" formControlName="name" />
+    </mat-form-field>
+
+    <div>
+      <button mat-raised-button color="accent" type="submit">
+        {{ editMode ? "Update" : "Add" }}
+      </button>
+    </div>
+  </form>
+</mat-card>

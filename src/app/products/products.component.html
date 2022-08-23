@@ -1,0 +1,40 @@
+<!-- <mat-grid-list cols="4" rowHeight="2:1" *ngFor="let product of products">
+  <mat-grid-tile class="pt-2">
+    <div>Name: {{ product.name }}</div>
+    <div>Price: {{ product.price }}</div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<hr /> -->
+
+<div class="container">
+  <button mat-raised-button color="accent" routerLink="/categories">
+    To Category
+  </button>
+
+  <hr />
+  <div class="row" *ngIf="products.length > 0">
+    <div class="col-md-4" *ngFor="let product of products">
+      <div class="card user-card">
+        <div class="card-header text-center">
+          <h5>Product Name: {{ product.name }}</h5>
+        </div>
+        <div class="card-block">
+          <!-- <p class="text-muted">Product Name: {{ product.name }}</p> -->
+
+          <!-- <p class="text-muted">ID: {{ product.id }}</p> -->
+          <p class="text-muted">Price: {{ product.price }} $</p>
+          <p class="text-muted">Quantity: {{ product.quantity }}</p>
+          <hr />
+          <!-- <p class="m-t-15">CategoryID: {{ product.categoryId }}</p> -->
+          <mat-action-row>
+            <a mat-button color="accent">EDIT</a>
+            <button mat-button color="warn" (click)="onDelete(product.id!)">
+              DELETE
+            </button>
+          </mat-action-row>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
