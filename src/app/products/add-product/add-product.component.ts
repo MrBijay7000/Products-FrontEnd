@@ -33,7 +33,6 @@ export class AddProductComponent implements OnInit {
       if (id) {
         this.editMode = true;
         this.productService.getProductById(id).subscribe((response: any) => {
-          console.log('product by id', { response });
           this.form.setValue({
             name: response.name,
             price: response.price,
@@ -55,7 +54,6 @@ export class AddProductComponent implements OnInit {
   }
 
   onSave() {
-    console.log({ formValidation: this.form.value });
     if (this.form.invalid) {
       return;
     }
