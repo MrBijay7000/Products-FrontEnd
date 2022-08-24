@@ -24,23 +24,23 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.formInit();
+    this.categoryService.getCategories().subscribe((response: any) => {
+      this.categories = response;
+    });
     this.route.paramMap.subscribe((paramMap: any) => {
       const id = paramMap.params.id;
 
       if (id) {
         this.editMode = true;
         this.productService.getProductById(id).subscribe((response: any) => {
-          console.log({ response });
           this.form.setValue({
             name: response.name,
             price: response.price,
             quantity: response.quantity,
+            category: response.categoryId,
           });
         });
       }
-    });
-    this.categoryService.getCategories().subscribe((response: any) => {
-      this.categories = response;
     });
   }
 
@@ -49,7 +49,7 @@ export class AddProductComponent implements OnInit {
       name: new FormControl(null, { validators: [Validators.required] }),
       price: new FormControl(null, { validators: [Validators.required] }),
       quantity: new FormControl(null, { validators: [Validators.required] }),
-      // category: new FormControl(null, { validators: [Validators.required] }),
+      category: new FormControl(null, { validators: [Validators.required] }),
     });
   }
 
@@ -60,9 +60,7 @@ export class AddProductComponent implements OnInit {
     if (this.editMode) {
       this.productService
         .updateProduct(this.form.value.id)
-        .subscribe((response: any) => {
-          console.log({ response });
-        });
+        .subscribe((response: any) => {});
     } else {
       const { name, price, category, quantity } = this.form.value;
       this.productService
