@@ -24,23 +24,25 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.formInit();
+    this.categoryService.getCategories().subscribe((response: any) => {
+      console.log({ response });
+      this.categories = response;
+    });
     this.route.paramMap.subscribe((paramMap: any) => {
       const id = paramMap.params.id;
 
       if (id) {
         this.editMode = true;
         this.productService.getProductById(id).subscribe((response: any) => {
-          console.log({ response });
+          console.log('product by id', { response });
           this.form.setValue({
             name: response.name,
             price: response.price,
             quantity: response.quantity,
+            category: response.categoryId,
           });
         });
       }
-    });
-    this.categoryService.getCategories().subscribe((response: any) => {
-      this.categories = response;
     });
   }
 
@@ -49,11 +51,12 @@ export class AddProductComponent implements OnInit {
       name: new FormControl(null, { validators: [Validators.required] }),
       price: new FormControl(null, { validators: [Validators.required] }),
       quantity: new FormControl(null, { validators: [Validators.required] }),
-      // category: new FormControl(null, { validators: [Validators.required] }),
+      category: new FormControl(null, { validators: [Validators.required] }),
     });
   }
 
   onSave() {
+    console.log({ formValidation: this.form.value });
     if (this.form.invalid) {
       return;
     }

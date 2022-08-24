@@ -11,11 +11,11 @@ export class ProductService {
   constructor(private http: HttpClient, private router: Router) {}
 
   getProducts() {
-    return this.http.get('http://localhost:3000/api/product');
+    return this.http.get('http://localhost:3001/api/product');
   }
 
   getProductById(id: string) {
-    return this.http.get('http://localhost:3000/api/product/' + id);
+    return this.http.get('http://localhost:3001/api/product/' + id);
   }
 
   addProducts(
@@ -30,15 +30,15 @@ export class ProductService {
       productPrice: price,
       category: categoryId,
     };
-    return this.http.post('http://localhost:3000/api/product', obj);
+    return this.http.post('http://localhost:3001/api/product', obj);
   }
 
   deleteProduct(id: string) {
-    return this.http.delete('http://localhost:3000/api/product/' + id);
+    return this.http.delete('http://localhost:3001/api/product/' + id);
   }
 
   updateProduct(id: string) {
-    return this.http.put('http://localhost:3000/api/product/', {
+    return this.http.put('http://localhost:3001/api/product/', {
       id,
     });
   }
