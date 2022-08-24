@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../model/Product.model';
 
+const BASE_URL = 'http://localhost:3001/api/product/';
 @Injectable({
   providedIn: 'root',
 })
@@ -11,11 +12,11 @@ export class ProductService {
   constructor(private http: HttpClient, private router: Router) {}
 
   getProducts() {
-    return this.http.get('http://localhost:3001/api/product');
+    return this.http.get(BASE_URL);
   }
 
   getProductById(id: string) {
-    return this.http.get('http://localhost:3001/api/product/' + id);
+    return this.http.get(BASE_URL + id);
   }
 
   addProducts(
@@ -30,15 +31,15 @@ export class ProductService {
       productPrice: price,
       category: categoryId,
     };
-    return this.http.post('http://localhost:3001/api/product', obj);
+    return this.http.post(BASE_URL, obj);
   }
 
   deleteProduct(id: string) {
-    return this.http.delete('http://localhost:3001/api/product/' + id);
+    return this.http.delete(BASE_URL + id);
   }
 
   updateProduct(id: string) {
-    return this.http.put('http://localhost:3001/api/product/', {
+    return this.http.put(BASE_URL, {
       id,
     });
   }

@@ -25,7 +25,6 @@ export class AddProductComponent implements OnInit {
   ngOnInit(): void {
     this.formInit();
     this.categoryService.getCategories().subscribe((response: any) => {
-      console.log({ response });
       this.categories = response;
     });
     this.route.paramMap.subscribe((paramMap: any) => {
@@ -63,9 +62,7 @@ export class AddProductComponent implements OnInit {
     if (this.editMode) {
       this.productService
         .updateProduct(this.form.value.id)
-        .subscribe((response: any) => {
-          console.log({ response });
-        });
+        .subscribe((response: any) => {});
     } else {
       const { name, price, category, quantity } = this.form.value;
       this.productService

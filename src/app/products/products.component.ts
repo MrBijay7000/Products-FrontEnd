@@ -24,8 +24,6 @@ export class ProductsComponent implements OnInit {
 
   fetchProducts() {
     this.productsService.getProducts().subscribe((response: any) => {
-      console.log({ response });
-
       this.products = response;
     });
   }
