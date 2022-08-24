@@ -38,9 +38,19 @@ export class ProductService {
     return this.http.delete(BASE_URL + id);
   }
 
-  updateProduct(id: string) {
+  updateProduct(
+    id: string,
+    name: string,
+    price: string,
+    quantity: string,
+    category: string
+  ) {
     return this.http.put(BASE_URL, {
       id,
+      name,
+      price,
+      quantity,
+      category,
     });
   }
 }

@@ -40,6 +40,8 @@ export class AddProductComponent implements OnInit {
             category: response.categoryId,
           });
         });
+      } else {
+        this.editMode = false;
       }
     });
   }
@@ -59,8 +61,19 @@ export class AddProductComponent implements OnInit {
     }
     if (this.editMode) {
       this.productService
-        .updateProduct(this.form.value.id)
-        .subscribe((response: any) => {});
+        .updateProduct(
+          this.form.value.id,
+          this.form.value.name,
+          this.form.value.price,
+          this.form.value.quantity,
+          this.form.value.category
+        )
+        .subscribe((response: any) => {
+          console.log({ response });
+          this.form.reset();
+          alert(response.message);
+          this.router.navigate(['/']);
+        });
     } else {
       const { name, price, category, quantity } = this.form.value;
       this.productService
