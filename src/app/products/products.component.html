@@ -27,8 +27,14 @@
           <p class="text-muted">Quantity: {{ product.quantity }}</p>
           <hr />
           <!-- <p class="m-t-15">CategoryID: {{ product.categoryId }}</p> -->
+          <p class="m-t-15">Category: {{ product.categoryName }}</p>
           <mat-action-row>
-            <a mat-button color="accent">EDIT</a>
+            <a
+              mat-button
+              color="accent"
+              [routerLink]="['product/edit', product.id]"
+              >EDIT</a
+            >
             <button mat-button color="warn" (click)="onDelete(product.id!)">
               DELETE
             </button>

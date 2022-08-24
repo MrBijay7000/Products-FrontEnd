@@ -14,6 +14,10 @@ export class ProductService {
     return this.http.get('http://localhost:3000/api/product');
   }
 
+  getProductById(id: string) {
+    return this.http.get('http://localhost:3000/api/product/' + id);
+  }
+
   addProducts(
     name: string,
     categoryId: string,
@@ -31,5 +35,11 @@ export class ProductService {
 
   deleteProduct(id: string) {
     return this.http.delete('http://localhost:3000/api/product/' + id);
+  }
+
+  updateProduct(id: string) {
+    return this.http.put('http://localhost:3000/api/product/', {
+      id,
+    });
   }
 }

@@ -53,7 +53,6 @@ export class AddCategoryComponent implements OnInit {
       return;
     }
     if (this.editMode) {
-      console.log('edit');
       this.categoryService
         .updateCategory(this.form.value.name, this.form.value.id)
         .subscribe((response: any) => {

@@ -1,46 +1,34 @@
 <mat-card>
-  <form (submit)="onSave(productForm)" #productForm="ngForm">
+  <form [formGroup]="form" (submit)="onSave()">
     <mat-form-field>
-      <input
-        matInput
-        type="text"
-        placeholder="Name"
-        ngModel
-        name="name"
-        required
-      />
+      <input matInput type="text" placeholder="Name" formControlName="name" />
     </mat-form-field>
+
     <mat-form-field>
-      <input
-        matInput
-        type="text"
-        placeholder="Price"
-        ngModel
-        name="price"
-        required
-      />
+      <input matInput type="text" placeholder="Price" formControlName="price" />
     </mat-form-field>
+
     <mat-form-field>
       <input
         matInput
         type="text"
         placeholder="Quantity"
-        ngModel
-        name="quantity"
-        required
+        formControlName="quantity"
       />
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Category</mat-label>
-      <mat-select ngModel required name="category">
+      <mat-select form="category">
         <mat-option *ngFor="let category of categories" [value]="category.id">
           {{ category.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <div>
-      <button mat-raised-button color="accent" type="submit">ADD</button>
+      <button mat-raised-button color="accent" type="submit">
+        {{ editMode ? "Update" : "Add" }}
+      </button>
     </div>
   </form>
 </mat-card>
