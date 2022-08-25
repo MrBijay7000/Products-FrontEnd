@@ -24,6 +24,8 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.formInit();
+    console.log(this.form.value);
+
     this.categoryService.getCategories().subscribe((response: any) => {
       this.categories = response;
     });
@@ -34,18 +36,22 @@ export class AddProductComponent implements OnInit {
         this.editMode = true;
         this.productService.getProductById(id).subscribe((response: any) => {
           this.form.setValue({
+            id: response.id,
             name: response.name,
             price: response.price,
             quantity: response.quantity,
             category: response.categoryId,
           });
         });
+      } else {
+        this.editMode = false;
       }
     });
   }
 
   formInit() {
     this.form = new FormGroup({
+      id: new FormControl(null),
       name: new FormControl(null, { validators: [Validators.required] }),
       price: new FormControl(null, { validators: [Validators.required] }),
       quantity: new FormControl(null, { validators: [Validators.required] }),
@@ -57,12 +63,17 @@ export class AddProductComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
+    const { name, price, category, quantity } = this.form.value;
+
     if (this.editMode) {
       this.productService
-        .updateProduct(this.form.value.id)
-        .subscribe((response: any) => {});
+        .updateProduct(this.form.value.id, name, price, quantity, category)
+        .subscribe((response: any) => {
+          this.form.reset();
+          alert(response.message);
+          this.router.navigate(['/']);
+        });
     } else {
-      const { name, price, category, quantity } = this.form.value;
       this.productService
         .addProducts(name, category, price, quantity)
         .subscribe((response: any) => {

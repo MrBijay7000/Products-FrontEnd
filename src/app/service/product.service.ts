@@ -38,9 +38,20 @@ export class ProductService {
     return this.http.delete(BASE_URL + id);
   }
 
-  updateProduct(id: string) {
-    return this.http.put(BASE_URL, {
-      id,
-    });
+  updateProduct(
+    id: string,
+    name: string,
+    price: string,
+    quantity: string,
+    category: string
+  ) {
+    const obj = {
+      id: id,
+      productName: name,
+      prodictPrice: price,
+      productQuantity: quantity,
+      category: category,
+    };
+    return this.http.put(BASE_URL, obj);
   }
 }
