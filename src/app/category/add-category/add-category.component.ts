@@ -30,6 +30,7 @@ export class AddCategoryComponent implements OnInit {
         this.editMode = true;
         this.categoryService.getCategoryById(id).subscribe((response: any) => {
           // this.category.name = response.name;
+
           this.form.setValue({
             name: response.name,
             id: response.id,

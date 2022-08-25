@@ -45,12 +45,13 @@ export class ProductService {
     quantity: string,
     category: string
   ) {
-    return this.http.put(BASE_URL, {
-      id,
-      name,
-      price,
-      quantity,
-      category,
-    });
+    const obj = {
+      id: id,
+      productName: name,
+      prodictPrice: price,
+      productQuantity: quantity,
+      category: category,
+    };
+    return this.http.put(BASE_URL, obj);
   }
 }
